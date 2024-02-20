@@ -5,24 +5,38 @@
 <PageTitle>Home</PageTitle>
 
 <div class="container">
-    <h1>Popular Movies</h1>
-    @if (movieResults.Results is not null)
-    {
-        @foreach (var movie in movieResults.Results)
-        {
-            <li>@movie.Title</li>
-        }
-    }
+    <div class="row">
+        <div class="col-6">
+            @if (movies is not null)
+            {
+                <h1>Popular Movies</h1>
+                @foreach (var movie in movies)
+                {
+                    <li>@movie.Title</li>
+                }
+            }
+        </div>
+        <div class="col-6">
+            @if (tVs is not null)
+            {
+                <h1>Popular TV Shows</h1>
+                @foreach (var tv in tVs)
+                {
+                    <li>@tv.Name</li>
+                }
+            }
+        </div>
+    </div>
 </div>
 
 @code {
 
-    private Movies movieResults = new();
+    private List<MovieResult> movies = new();
+    private List<TVResults> tVs = new();
     protected override async Task OnInitializedAsync()
     {
-        movieResults = await MovieDBService.GetMovies();
+        movies = await MovieDBService.GetMoviesAsync();
+        tVs = await MovieDBService.GetTvAsync();
     }
 
 }
-
-

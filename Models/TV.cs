@@ -3,13 +3,13 @@ using Newtonsoft.Json;
 
 namespace BlazorMovieDB.Models;
 
-public partial class Movie
+public partial class TV
 {
     [JsonProperty("page")]
     public long Page { get; set; }
 
     [JsonProperty("results")]
-    public List<MovieResult> Results { get; set; }
+    public List<TVResults> Results { get; set; } = [];
 
     [JsonProperty("total_pages")]
     public long TotalPages { get; set; }
@@ -18,7 +18,7 @@ public partial class Movie
     public long TotalResults { get; set; }
 }
 
-public partial class MovieResult
+public partial class TVResults
 {
     [JsonProperty("adult")]
     public bool Adult { get; set; }
@@ -32,11 +32,14 @@ public partial class MovieResult
     [JsonProperty("id")]
     public long Id { get; set; }
 
-    [JsonProperty("original_language")]
-    public OriginalLanguage OriginalLanguage { get; set; }
+    [JsonProperty("origin_country")]
+    public string[] OriginCountry { get; set; }
 
-    [JsonProperty("original_title")]
-    public string OriginalTitle { get; set; }
+    [JsonProperty("original_language")]
+    public string OriginalLanguage { get; set; }
+
+    [JsonProperty("original_name")]
+    public string OriginalName { get; set; }
 
     [JsonProperty("overview")]
     public string Overview { get; set; }
@@ -47,14 +50,11 @@ public partial class MovieResult
     [JsonProperty("poster_path")]
     public string PosterPath { get; set; }
 
-    [JsonProperty("release_date")]
-    public DateTimeOffset ReleaseDate { get; set; }
+    [JsonProperty("first_air_date")]
+    public DateTimeOffset FirstAirDate { get; set; }
 
-    [JsonProperty("title")]
-    public string Title { get; set; }
-
-    [JsonProperty("video")]
-    public bool Video { get; set; }
+    [JsonProperty("name")]
+    public string Name { get; set; }
 
     [JsonProperty("vote_average")]
     public double VoteAverage { get; set; }
@@ -63,9 +63,4 @@ public partial class MovieResult
     public long VoteCount { get; set; }
 }
 
-public enum OriginalLanguage { De, En, Ko };
-
-
-
-    
-    
+   
