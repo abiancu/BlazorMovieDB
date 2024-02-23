@@ -45,26 +45,26 @@ namespace BlazorMovieDB.Components.Services
             }
             catch (HttpRequestException ex)
             {
-                // _logger.LogError(ex.ToString());
+                
                 throw new HttpRequestException(ex.ToString());
             }
         }
 
-        public async Task<List<TV>> GetTvAsync()
+        public async Task<List<TV>?> GetTvAsync()
         {
             try
             {
                 var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
-                    $"{_httpClient.BaseAddress}/{Constants.discoverMovie}"));
+                    $"{_httpClient.BaseAddress}/{Constants.discoverTv}"));
                 
                 if (response.IsSuccessStatusCode)
                 {
                     var body = await response.Content.ReadAsStringAsync();
                     var deserializedObject = JsonConvert.DeserializeObject<TVResults>(body);
-                    var listOfTv = deserializedObject.Results;
-                    
+                    var listOfTv = deserializedObject?.Results;
 
                     return listOfTv;
+                   
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace BlazorMovieDB.Components.Services
             }
             catch (HttpRequestException ex)
             {
-                // _logger.LogError(ex.ToString());
+                
                 throw new HttpRequestException(ex.ToString());
             }
         }
