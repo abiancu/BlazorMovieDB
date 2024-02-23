@@ -3,13 +3,15 @@ using Newtonsoft.Json;
 
 namespace BlazorMovieDB.Models;
 
-public partial class TV
+public partial class TVResults
 {
     [JsonProperty("page")]
     public long Page { get; set; }
 
     [JsonProperty("results")]
-    public List<TVResults> Results { get; set; } = [];
+
+    public List<TV> Results { get; set; } = [];
+
 
     [JsonProperty("total_pages")]
     public long TotalPages { get; set; }
@@ -18,7 +20,7 @@ public partial class TV
     public long TotalResults { get; set; }
 }
 
-public partial class TVResults
+public partial class TV
 {
     [JsonProperty("adult")]
     public bool Adult { get; set; }

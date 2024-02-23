@@ -6,37 +6,68 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-6">
-            @if (movies is not null)
-            {
-                <h1>Popular Movies</h1>
-                @foreach (var movie in movies)
-                {
-                    <li>@movie.Title</li>
-                }
-            }
+        <div class="col">
+            <h1>Popular Movies</h1>
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-start g-4 p-3">
+
+                    @{
+                        System.Diagnostics.Debug.Assert(_movies != null, nameof(_movies) + " != null");
+                    }
+                    @foreach (var movie in _movies)
+                    {
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="@($"https://image.tmdb.org/t/p/original/{movie.PosterPath}")" class="card-img-top" alt="Movie Poster"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">@movie.Title</h5>
+                                    <a href="#!" class="btn btn-primary" data-mdb-ripple-init>Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
-        <div class="col-6">
-            @if (tVs is not null)
-            {
-                <h1>Popular TV Shows</h1>
-                @foreach (var tv in tVs)
-                {
-                    <li>@tv.Name</li>
-                }
-            }
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="d-flex align-item-center">Popular TV Shows</h1>
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-start g-4 p-3">
+
+                    @{
+                        System.Diagnostics.Debug.Assert(_tVs != null, nameof(_tVs) + " != null");
+                    }
+                    @foreach (var tv in _tVs)
+                    {
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="@($"https://image.tmdb.org/t/p/original/{tv.PosterPath}")" class="card-img-top" alt="Movie Poster"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">@tv.Name </h5>
+                                    <a href="#!" class="btn btn-primary" data-mdb-ripple-init>Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 @code {
 
-    private List<MovieResult> movies = new();
-    private List<TVResults> tVs = new();
+    private List<Movie>? _movies = [];
+    private List<TV>? _tVs = [];
+
     protected override async Task OnInitializedAsync()
     {
-        movies = await MovieDBService.GetMoviesAsync();
-        tVs = await MovieDBService.GetTvAsync();
+        _movies = await MovieDBService.GetMoviesAsync();
+        _tVs = await MovieDBService.GetTvAsync();
     }
 
 }
