@@ -3,6 +3,7 @@ using System.Text.Json;
 using BlazorMovieDB.Models;
 using BlazorMovieDB.Utilities;
 using Newtonsoft.Json;
+using Results = BlazorMovieDB.Models.Results;
 
 
 namespace BlazorMovieDB.Components.Services
@@ -67,6 +68,37 @@ namespace BlazorMovieDB.Components.Services
                     var listOfTv = deserializedObject?.Results;
 
                     return listOfTv;
+                   
+
+                }
+                else
+                {
+                    return [];
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+
+                // _logger.LogError(ex.ToString());
+
+                throw new HttpRequestException(ex.ToString());
+            }
+        }
+        
+        public async Task<Results[]?> GetMovieDetails(long id)
+        {
+            try
+            {
+                var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
+                    $"{_httpClient.BaseAddress}/{Constants.movieDetails}/{id}"));
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    var body = await response.Content.ReadAsStringAsync();
+                    var deserializedObject = JsonConvert.DeserializeObject<MovieDetails>(body);
+                    var movieDetails = deserializedObject?.Results;
+
+                    return movieDetails;
                    
 
                 }

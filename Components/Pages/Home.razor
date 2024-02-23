@@ -21,7 +21,7 @@
                                 <img src="@($"https://image.tmdb.org/t/p/original/{movie.PosterPath}")" class="card-img-top" alt="Movie Poster"/>
                                 <div class="card-body">
                                     <h5 class="card-title">@movie.Title</h5>
-                                    <a href="#!" class="btn btn-primary" data-mdb-ripple-init>Details</a>
+                                    <a href="/movie/details/@movie.Id" class="btn btn-primary" data-mdb-ripple-init>Details</a>
                                 </div>
                             </div>
                         </div>
@@ -31,6 +31,7 @@
         </div>
     </div>
 </div>
+<hr class="hr hr-blurry"/>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -60,10 +61,11 @@
 </div>
 
 @code {
-
+    
+    [Parameter] public MovieDetails _movieDetails { get; set; }
     private List<Movie>? _movies = [];
     private List<TV>? _tVs = [];
-
+    
     protected override async Task OnInitializedAsync()
     {
         _movies = await MovieDBService.GetMoviesAsync();
