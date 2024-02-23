@@ -4,6 +4,7 @@ using BlazorMovieDB.Models;
 using BlazorMovieDB.Utilities;
 using Newtonsoft.Json;
 
+
 namespace BlazorMovieDB.Components.Services
 {
     public class MovieDBService
@@ -35,7 +36,7 @@ namespace BlazorMovieDB.Components.Services
                     var body = await response.Content.ReadAsStringAsync();
                     var deserializedObject = JsonConvert.DeserializeObject<MovieResults>(body);
                     var movies = deserializedObject?.Results;
-                   
+                  
                     return movies;
                 }
                 else
@@ -45,10 +46,12 @@ namespace BlazorMovieDB.Components.Services
             }
             catch (HttpRequestException ex)
             {
-                
+
+                // _logger.LogError(ex.ToString());
                 throw new HttpRequestException(ex.ToString());
             }
         }
+
 
         public async Task<List<TV>?> GetTvAsync()
         {
@@ -65,6 +68,7 @@ namespace BlazorMovieDB.Components.Services
 
                     return listOfTv;
                    
+
                 }
                 else
                 {
@@ -73,7 +77,9 @@ namespace BlazorMovieDB.Components.Services
             }
             catch (HttpRequestException ex)
             {
-                
+
+                // _logger.LogError(ex.ToString());
+
                 throw new HttpRequestException(ex.ToString());
             }
         }

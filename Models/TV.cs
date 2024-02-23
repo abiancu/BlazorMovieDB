@@ -9,7 +9,9 @@ public partial class TVResults
     public long Page { get; set; }
 
     [JsonProperty("results")]
+
     public List<TV> Results { get; set; } = [];
+
 
     [JsonProperty("total_pages")]
     public long TotalPages { get; set; }

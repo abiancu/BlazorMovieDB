@@ -66,5 +66,3 @@ public partial class Movie
 }
 
 public enum OriginalLanguage { De, En, Ko };
-
-
