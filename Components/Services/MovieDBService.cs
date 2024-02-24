@@ -1,27 +1,21 @@
 using System.Net.Http.Headers;
-using System.Text.Json;
 using BlazorMovieDB.Models;
 using BlazorMovieDB.Utilities;
 using Newtonsoft.Json;
-using Results = BlazorMovieDB.Models.Results;
 
 
 namespace BlazorMovieDB.Components.Services
 {
-    public class MovieDBService
+    public class MovieDbService
     {
         private readonly HttpClient _httpClient;
-        private readonly IConfiguration _config;
-        private readonly string? _token;
-
-        public MovieDBService(HttpClient httpClient, IConfiguration config)
-        {
-            _config = config;
+        public MovieDbService(HttpClient httpClient, IConfiguration config)
+        {   
+            var token = config["TOKEN"] ?? throw new Exception("MDB token not found!");
             _httpClient = httpClient;
-            _token = _config["TOKEN"] ?? throw new Exception("MDB token not found!");
-            _httpClient.BaseAddress = new Uri(_config["MDB_URL"] ?? throw new Exception("MDB URL not"));
+            _httpClient.BaseAddress = new Uri(config["MDB_URL"] ?? throw new Exception("MDB URL not"));
             _httpClient.DefaultRequestHeaders.Accept.Add(new("application/json"));
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
 
         public async Task<List<Movie>?> GetMoviesAsync()
@@ -31,19 +25,14 @@ namespace BlazorMovieDB.Components.Services
                 
                 var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
                     $"{_httpClient.BaseAddress}/{Constants.discoverMovie}"));
-                
-                if (response.IsSuccessStatusCode)
-                {
-                    var body = await response.Content.ReadAsStringAsync();
-                    var deserializedObject = JsonConvert.DeserializeObject<MovieResults>(body);
-                    var movies = deserializedObject?.Results;
+
+                if (!response.IsSuccessStatusCode) return [];
+                var body = await response.Content.ReadAsStringAsync();
+                var deserializedObject = JsonConvert.DeserializeObject<MovieResults>(body);
+                var movies = deserializedObject?.Results;
                   
-                    return movies;
-                }
-                else
-                {
-                    return [];
-                }
+                return movies;
+
             }
             catch (HttpRequestException ex)
             {
@@ -60,21 +49,14 @@ namespace BlazorMovieDB.Components.Services
             {
                 var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
                     $"{_httpClient.BaseAddress}/{Constants.discoverTv}"));
-                
-                if (response.IsSuccessStatusCode)
-                {
-                    var body = await response.Content.ReadAsStringAsync();
-                    var deserializedObject = JsonConvert.DeserializeObject<TVResults>(body);
-                    var listOfTv = deserializedObject?.Results;
 
-                    return listOfTv;
-                   
+                if (!response.IsSuccessStatusCode) return [];
+                var body = await response.Content.ReadAsStringAsync();
+                var deserializedObject = JsonConvert.DeserializeObject<TVResults>(body);
+                var listOfTv = deserializedObject?.Results;
 
-                }
-                else
-                {
-                    return [];
-                }
+                return listOfTv;
+
             }
             catch (HttpRequestException ex)
             {
@@ -85,7 +67,7 @@ namespace BlazorMovieDB.Components.Services
             }
         }
         
-        public async Task<Results[]?> GetMovieDetails(long id)
+        public async Task<MovieDetails?> GetMovieDetails(long id)
         {
             try
             {
@@ -96,7 +78,7 @@ namespace BlazorMovieDB.Components.Services
                 {
                     var body = await response.Content.ReadAsStringAsync();
                     var deserializedObject = JsonConvert.DeserializeObject<MovieDetails>(body);
-                    var movieDetails = deserializedObject?.Results;
+                    var movieDetails = deserializedObject;
 
                     return movieDetails;
                    
@@ -104,7 +86,7 @@ namespace BlazorMovieDB.Components.Services
                 }
                 else
                 {
-                    return [];
+                    return new();
                 }
             }
             catch (HttpRequestException ex)

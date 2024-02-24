@@ -1,3 +1,4 @@
 footer {
-    background: linear-gradient(180deg, #1D2E3E 9.5%, rgba(29, 46, 62, 0.00) 88.5%);
+    position: absolute;
+    width: 100vw;
 }
