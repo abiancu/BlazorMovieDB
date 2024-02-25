@@ -9,6 +9,7 @@ public partial class MovieDetailsPage : ComponentBase
     [Inject] public MovieDbService? MovieDbService { get; set; }
     [Parameter] public long Id { get; set; }
     private MovieDetails? Details { get; set; }
+    private bool _isLoading = true;
 
     protected override async Task OnInitializedAsync()
     {
@@ -17,5 +18,6 @@ public partial class MovieDetailsPage : ComponentBase
     private async Task GetDetails(long id)
     {
         if (MovieDbService is not null) Details = await MovieDbService.GetMovieDetails(id);
+        _isLoading = false;
     }
 }

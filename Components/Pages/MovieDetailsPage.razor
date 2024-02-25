@@ -1,21 +1,39 @@
 @page "/movie/details/{Id:long}"
 @using BlazorMovieDB.Models
+
 <PageTitle>Movie Details</PageTitle>
-<h3>MovieDetails</h3>
 
-
+@* @if (_isLoading) *@
+@* { *@
+@*     <Loader /> *@
+@* } *@
 <div class="container">
-    <h3>Id = @Id</h3>
     @if (Details is not null)
     {
-        @foreach (var genre in Details.Genres)
-        {
-            <ul>@genre.Name</ul>
-        }
-        <div class="row">
-            <div class="col">@Details.Homepage</div>
-            <div class="col">@Details.Video</div>
-        </div>
+        <div class="hero-bg" style="@($"(--bg-img: url(https://image.tmdb.org/t/p/original/{Details.BackdropPath})")">
+            <div class="hero-container">
+                <div class="container-xxl d-flex flex-column flex-md-row">
+                    <!-- Details content goes here -->
+                    <div class="flex-grow-1 d-flex align-items-center justify-content-center justify-content-md-end">
+                        <div class="title-container text-center text-md-end">
+                            <h1 class="text-light">@Details.Title</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
     }
+    @* <h3>Id = @Id</h3> *@
+    @* @if (Details is not null) *@
+    @* { *@
+    @*     @foreach (var genre in Details.Genres) *@
+    @*     { *@
+    @*         <ul>@genre.Name</ul> *@
+    @*     } *@
+    @*     <div class="row"> *@
+    @*         <div class="col">@Details.Homepage</div> *@
+    @*         <div class="col">@Details.Video</div> *@
+    @*     </div> *@
+    @* } *@
 </div>
 
