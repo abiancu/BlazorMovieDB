@@ -13,25 +13,39 @@
         <div class="hero-bg" style="@($"--bg-img: url(https://image.tmdb.org/t/p/original{Details.BackdropPath})")">
             <div class="hero-container">
                 <div class="container-xxl d-flex flex-column flex-md-row">
-                    <!-- Details content goes here -->
+                    <!-- Hero section goes here -->
                     <div class="flex-grow-1 d-flex align-items-center justify-content-center justify-content-md-end">
                         <div class="title-container text-center text-md-end">
                             <h1 class="text-light">@Details.Title</h1>
                             <h2 text-light>@Details.Tagline</h2>
-                                @if (Details.Genres is not null)
+                            @if (Details.Genres is not null)
+                            {
+                                @foreach (var genre in Details.Genres)
                                 {
-                                    @foreach (var genre in Details.Genres)
-                                    {
                                         
-                                        <span class="badge round-pill badge-light">@genre.Name</span>
-                                    }
-                                    
+                                    <span class="badge round-pill badge-light">@genre.Name</span>
                                 }
+                                    
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
+        <div class="container-xxl d-flex flex-column flex-md-row align-timers-start justify-content-center justify-content-md-end">
+            <div class="contiainer-fluid">
+                <div class="row row-cols-1">
+                    <!-- poster -->
+                    <div class="col">
+                        <img src="@Details.PosterPath" alt="movie-poster"/>
+                    </div>
+                    <!-- overview -->
+                    <div class="col">                        
+                        <p class="text-center">@Details.Overview</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 </div>
 
