@@ -1,12 +1,8 @@
 main {
     flex-grow: 1;
-}
-.page {
-    display: flex;
     position: relative;
-    flex-direction: column;
     min-height: 100vh;
-    min-width: 100vw;
+    max-height: 100vw;
 }
 
 .sidebar {
@@ -37,7 +33,7 @@ main {
         text-overflow: ellipsis;
     }
 
-@media (max-width: 640.98px) {
+@media (max-width: 641px) {
     .top-row {
         justify-content: space-between;
     }

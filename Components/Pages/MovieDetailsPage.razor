@@ -1,5 +1,4 @@
 @page "/movie/details/{Id:long}"
-@using BlazorMovieDB.Models
 
 <PageTitle>Movie Details</PageTitle>
 
@@ -9,23 +8,33 @@
 }
 else
 {
-    <div class="hero-bg" style="@($"--bg-img: url(https://image.tmdb.org/t/p/original{Details.BackdropPath})")">
+    <div class="hero-bg" style="@($"--bg-img: url(https://image.tmdb.org/t/p/original{Details?.BackdropPath})")">
         <div class="hero-container">
             <div class="container-xxl d-flex flex-column flex-md-row">
                 <!-- Hero section goes here -->
                 <div class="flex-grow-1 d-flex align-items-center justify-content-center justify-content-md-end">
                     @if (Details is not null)
                     {
-                        <div class="title-container text-center text-md-end">
+                        <div class="text-center text-md-end">
                             <h1 class="text-light">@Details.Title</h1>
                             <h5 class="text-light">@Details.Tagline</h5>
                             @if (Details.Genres is not null)
                             {
                                 @foreach (var genre in Details.Genres)
                                 {
-                                    <span class="badge round-pill badge-light">@genre.Name</span>
+                                    <div class="d-inline-flex ms-1">
+                                        <span class="badge round-pill badge-light">@genre.Name</span>
+                                    </div>
                                 }
                             }
+                            <ul class="nav nav-pills mt-3">
+                                <li class="nav-item d-inline-flex">
+                                    <a class="nav-link" href="@Details.Homepage"><i class="fa-regular fa-film me-2"></i><span>Home Page</span></a>
+                                </li>
+                                <li class="nav-item d-inline-flex">
+                                    <a class="nav-link"><i class="fa-regular fa-fire me-2"></i><span>@Details.Popularity</span></a>
+                                </li>
+                            </ul>
                         </div>
                     }
                 </div>
