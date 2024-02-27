@@ -4,5 +4,6 @@ namespace BlazorMovieDB.Utilities
     {
         public const string discoverMovie = "discover/movie";
         public const string discoverTv = "discover/tv";
+        public const string movieDetails = "movie";
     }
 }

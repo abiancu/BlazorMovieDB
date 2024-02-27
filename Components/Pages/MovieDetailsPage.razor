@@ -1,0 +1,53 @@
+@page "/movie/details/{Id:long}"
+@using BlazorMovieDB.Models
+
+<PageTitle>Movie Details</PageTitle>
+
+@if (_isLoading)
+{
+    <Loader/>
+}
+else
+{
+    <div class="hero-bg" style="@($"--bg-img: url(https://image.tmdb.org/t/p/original{Details.BackdropPath})")">
+        <div class="hero-container">
+            <div class="container-xxl d-flex flex-column flex-md-row">
+                <!-- Hero section goes here -->
+                <div class="flex-grow-1 d-flex align-items-center justify-content-center justify-content-md-end">
+                    @if (Details is not null)
+                    {
+                        <div class="title-container text-center text-md-end">
+                            <h1 class="text-light">@Details.Title</h1>
+                            <h5 class="text-light">@Details.Tagline</h5>
+                            @if (Details.Genres is not null)
+                            {
+                                @foreach (var genre in Details.Genres)
+                                {
+                                    <span class="badge round-pill badge-light">@genre.Name</span>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="order-last order-md-first d-flex justify-content-center">
+                    <div class="poster-container">
+                        @if (Details?.PosterPath is not null)
+                        {
+                            <img src="@($"https://image.tmdb.org/t/p/w500/{Details.PosterPath}")" alt="movie-poster"/>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="d-flex flex-column" style="margin-top: 12rem">
+            <p>
+                @if (Details is not null)
+                {
+                    @Details.Overview
+                }
+            </p>
+        </div>
+    </div>
+}

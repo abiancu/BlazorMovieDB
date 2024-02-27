@@ -65,4 +65,4 @@ public partial class Movie
     public long VoteCount { get; set; }
 }
 
-public enum OriginalLanguage { De, En, Ko };
+public enum OriginalLanguage { De, En, Ko, Es };
