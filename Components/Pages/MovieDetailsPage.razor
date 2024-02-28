@@ -2,7 +2,7 @@
 
 <PageTitle>Movie Details</PageTitle>
 
-@if (_isLoading)
+@if (Details is null)
 {
     <Loader/>
 }
@@ -29,10 +29,10 @@ else
                             }
                             <ul class="nav nav-pills mt-3">
                                 <li class="nav-item d-inline-flex">
-                                    <a class="nav-link" href="@Details.Homepage"><i class="fa-regular fa-film me-2"></i><span>Home Page</span></a>
+                                    <a class="nav-link" href=@($"{Details.Homepage}")><i class="fa-solid fa-film me-2"></i><span>Home Page</span></a>
                                 </li>
                                 <li class="nav-item d-inline-flex">
-                                    <a class="nav-link"><i class="fa-regular fa-fire me-2"></i><span>@Details.Popularity</span></a>
+                                    <a class="nav-link"><i class="fa-solid fa-fire me-2"></i><span>@Details.Popularity</span></a>
                                 </li>
                             </ul>
                         </div>

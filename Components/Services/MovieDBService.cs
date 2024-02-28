@@ -24,7 +24,7 @@ namespace BlazorMovieDB.Components.Services
             {
                 
                 var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
-                    $"{_httpClient.BaseAddress}/{Constants.discoverMovie}"));
+                    $"{_httpClient.BaseAddress}/{Constants.DiscoverMovie}"));
 
                 if (!response.IsSuccessStatusCode) return [];
                 var body = await response.Content.ReadAsStringAsync();
@@ -43,16 +43,16 @@ namespace BlazorMovieDB.Components.Services
         }
 
 
-        public async Task<List<TV>?> GetTvAsync()
+        public async Task<List<Tv>?> GetTvAsync()
         {
             try
             {
                 var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
-                    $"{_httpClient.BaseAddress}/{Constants.discoverTv}"));
+                    $"{_httpClient.BaseAddress}/{Constants.DiscoverTv}"));
 
                 if (!response.IsSuccessStatusCode) return [];
                 var body = await response.Content.ReadAsStringAsync();
-                var deserializedObject = JsonConvert.DeserializeObject<TVResults>(body);
+                var deserializedObject = JsonConvert.DeserializeObject<TvResults>(body);
                 var listOfTv = deserializedObject?.Results;
 
                 return listOfTv;
@@ -72,7 +72,7 @@ namespace BlazorMovieDB.Components.Services
             try
             {
                 var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
-                    $"{_httpClient.BaseAddress}/{Constants.movieDetails}/{id}"));
+                    $"{_httpClient.BaseAddress}/{Constants.MovieDetails}/{id}"));
                 
                 if (response.IsSuccessStatusCode)
                 {
