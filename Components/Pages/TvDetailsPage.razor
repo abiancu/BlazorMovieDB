@@ -1,39 +1,39 @@
 @page "/tv/details/{id:long}"
 
-@if (Details is null)
+@if (TvDetails is null)
 {
     <Loader/>
 }
 else
 {
-    <div class="tv-hero-bg" style="@($"--bg-img: url(https://image.tmdb.org/t/p/original{Details?.BackdropPath})")">
+    <div class="tv-hero-bg" style="@($"--bg-img: url(https://image.tmdb.org/t/p/original{TvDetails?.BackdropPath})")">
         <div class="tv-hero-container">
             <div class="container-xxl d-flex flex-column flex-md-row">
                 <!-- Hero section goes here -->
                 <div class="flex-grow-1 d-flex align-items-center justify-content-center justify-content-md-end">
-                    @if (Details is not null)
+                    @if (TvDetails is not null)
                     {
                         <div class="text-center text-md-end">
-                            <h1 class="text-light">@Details.Name</h1>
-                            <h5 class="text-light">@Details.Tagline</h5>
-                            @if (!string.IsNullOrEmpty(Details.Genres.ToString()))
+                            <h1 class="text-light">@TvDetails.Name</h1>
+                            <h5 class="text-light">@TvDetails.Tagline</h5>
+                            @if (!string.IsNullOrEmpty(TvDetails.Genres.ToString()))
                             {
-                                @foreach (var genre in Details.Genres)
+                                @foreach (var genre in TvDetails.Genres)
                                 {
                                     <div class="d-inline-flex ms-1">
                                         <span class="badge round-pill badge-light">@genre.Name</span>
                                     </div>
                                 }
                             }
-                            <ul class="nav nav-pills mt-3">
+                            <ul class="nav nav-pills justify-content-end mt-3">
                                 <li class="nav-item d-inline-flex">
-                                    <a class="nav-link" href=@($"{Details.Homepage}")>
+                                    <a class="nav-link" href=@($"{TvDetails.Homepage}")>
                                         <i class="fa-solid fa-film me-2"></i><span>Home Page</span>
                                     </a>
                                 </li>
                                 <li class="nav-item d-inline-flex">
                                     <a class="nav-link">
-                                        <i class="fa-solid fa-fire me-2"></i><span>@Details.Popularity</span>
+                                        <i class="fa-solid fa-fire me-2"></i><span>@TvDetails.Popularity</span>
                                     </a>
                                 </li>
                             </ul>
@@ -42,9 +42,9 @@ else
                 </div>
                 <div class="order-last order-md-first d-flex justify-content-center">
                     <div class="tv-poster-container">
-                        @if (Details?.PosterPath is not null)
+                        @if (TvDetails?.PosterPath is not null)
                         {
-                            <img src="@($"https://image.tmdb.org/t/p/w500/{Details.PosterPath}")" alt="tv-poster"/>
+                            <img src="@($"https://image.tmdb.org/t/p/w500/{TvDetails.PosterPath}")" alt="tv-poster"/>
                         }
                     </div>
                 </div>
@@ -54,9 +54,9 @@ else
     <div class="container-xxl">
         <div class="d-flex flex-column" style="margin-top: 12rem">
             <p>
-                @if (Details is not null)
+                @if (TvDetails is not null)
                 {
-                    @Details.Overview
+                    @TvDetails.Overview
                 }
             </p>
         </div>
