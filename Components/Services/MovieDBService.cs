@@ -84,10 +84,8 @@ namespace BlazorMovieDB.Components.Services
                    
 
                 }
-                else
-                {
-                    return new();
-                }
+
+                return new();
             }
             catch (HttpRequestException ex)
             {
@@ -95,6 +93,27 @@ namespace BlazorMovieDB.Components.Services
                 // _logger.LogError(ex.ToString());
 
                 throw new HttpRequestException(ex.ToString());
+            }
+        }
+
+        public async Task<TvDetails?> GetTvDetailsAsync(long id)
+        {
+            try
+            {
+                var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
+                    $"{_httpClient.BaseAddress}/{Constants.TvShowDetails}/{id}"));
+
+                if (!response.IsSuccessStatusCode) return new();
+                var body = await response.Content.ReadAsStringAsync();
+                dynamic? details = JsonConvert.DeserializeObject<TvDetails>(body);
+
+                return details;
+
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
     }
