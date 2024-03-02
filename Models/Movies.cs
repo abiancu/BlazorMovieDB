@@ -31,8 +31,8 @@ public class Movie
     [JsonProperty("id")]
     public long Id { get; set; }
 
-    [JsonProperty("original_language")]
-    public OriginalLanguage OriginalLanguage { get; set; }
+    // [JsonProperty("original_language")]
+    // public OriginalLanguage OriginalLanguage { get; set; }
 
     [JsonProperty("original_title")]
     public string? OriginalTitle { get; set; }
@@ -62,4 +62,4 @@ public class Movie
     public long VoteCount { get; set; }
 }
 
-public enum OriginalLanguage { De, En, Ko, Es };
+// public enum OriginalLanguage { De, En, Ko, Es, Th };
