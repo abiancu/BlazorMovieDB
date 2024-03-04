@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace BlazorMovieDB.Models;
 
-public class TvResults
+public class TvResults : IMediaResults
 {
     [JsonProperty("page")]
     public long Page { get; set; }
@@ -18,13 +18,12 @@ public class TvResults
     public long TotalResults { get; set; }
 }
 
-public class Tv
+public class Tv : IMedia
 {
     [JsonProperty("adult")]
     public bool Adult { get; set; }
 
-    [JsonProperty("backdrop_path")]
-    public string? BackdropPath { get; set; }
+    [JsonProperty("backdrop_path")] public string BackdropPath { get; set; } = null!;
 
     [JsonProperty("genre_ids")]
     public List<long> GenreIds { get; set; } = [];
@@ -33,22 +32,19 @@ public class Tv
     public long Id { get; set; }
 
     [JsonProperty("origin_country")]
-    public List<string> OriginCountry { get; set; } = [];
-
-    [JsonProperty("original_language")]
-    public string? OriginalLanguage { get; set; }
+    public List<string> OriginCountry { get; set; } = []; 
+    
+    [JsonProperty("original_language")] public string OriginalLanguage { get; set; } = null!;
 
     [JsonProperty("original_name")]
     public string? OriginalName { get; set; }
 
-    [JsonProperty("overview")]
-    public string? Overview { get; set; }
+    [JsonProperty("overview")] public string Overview { get; set; } = null!;
 
     [JsonProperty("popularity")]
     public double Popularity { get; set; }
 
-    [JsonProperty("poster_path")]
-    public string? PosterPath { get; set; }
+    [JsonProperty("poster_path")] public string PosterPath { get; set; } = null!;
 
     [JsonProperty("first_air_date")]
     public DateTimeOffset FirstAirDate { get; set; }

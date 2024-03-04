@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace BlazorMovieDB.Models;
 
-public class MovieResults
+public class MovieResults : IMediaResults
 {
     [JsonProperty("page")]
     public long Page { get; set; }
@@ -18,33 +18,30 @@ public class MovieResults
     public long TotalResults { get; set; }
 }
 
-public class Movie
+public class Movie : IMedia
 {
     [JsonProperty("adult")]
     public bool Adult { get; set; }
 
-    [JsonProperty("backdrop_path")]
-    public string? BackdropPath { get; set; }
+    [JsonProperty("backdrop_path")] public string BackdropPath { get; set; } = null!;
 
     [JsonProperty("genre_ids")] public List<long> GenreIds { get; set; } = [];
 
     [JsonProperty("id")]
     public long Id { get; set; }
 
-    // [JsonProperty("original_language")]
-    // public OriginalLanguage OriginalLanguage { get; set; }
+    [JsonProperty("original_language")]
+    public string OriginalLanguage { get; set; } = null!;
 
     [JsonProperty("original_title")]
     public string? OriginalTitle { get; set; }
 
-    [JsonProperty("overview")]
-    public string? Overview { get; set; }
+    [JsonProperty("overview")] public string Overview { get; set; } = null!;
 
     [JsonProperty("popularity")]
     public double Popularity { get; set; }
 
-    [JsonProperty("poster_path")]
-    public string? PosterPath { get; set; }
+    [JsonProperty("poster_path")] public string PosterPath { get; set; } = null!;
 
     [JsonProperty("release_date")]
     public DateTimeOffset ReleaseDate { get; set; }
@@ -62,4 +59,3 @@ public class Movie
     public long VoteCount { get; set; }
 }
 
-// public enum OriginalLanguage { De, En, Ko, Es, Th };
