@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 
 namespace BlazorMovieDB.Models;
-public class MovieDetails
+public class MovieDetails : IDetailsPage
 {
     [JsonProperty("adult")]
         public bool Adult { get; set; }
@@ -16,8 +16,7 @@ public class MovieDetails
         [JsonProperty("budget")]
         public long Budget { get; set; }
 
-        [JsonProperty("genres")]
-        public Genre[]? Genres { get; set; }
+        [JsonProperty("genres")] public List<Genres> Genres { get; set; } = null!;
 
         [JsonProperty("homepage")]
         public Uri? Homepage { get; set; }
@@ -47,7 +46,7 @@ public class MovieDetails
         public ProductionCompany[]? ProductionCompanies { get; set; }
 
         [JsonProperty("production_countries")]
-        public ProductionCountry[]? ProductionCountries { get; set; }
+        public List<ProductionCountries>? ProductionCountries { get; set; }
 
         [JsonProperty("release_date")]
         public DateTimeOffset ReleaseDate { get; set; }
@@ -58,8 +57,7 @@ public class MovieDetails
         [JsonProperty("runtime")]
         public long Runtime { get; set; }
 
-        [JsonProperty("spoken_languages")]
-        public SpokenLanguage[]? SpokenLanguages { get; set; }
+        [JsonProperty("spoken_languages")] public List<SpokenLanguages> SpokenLanguages { get; set; } = null!;
 
         [JsonProperty("status")]
         public string? Status { get; set; }

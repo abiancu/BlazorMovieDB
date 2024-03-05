@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace BlazorMovieDB.Models;
 
-public class TvDetails
+public class TvDetails : IDetailsPage
 {
     [JsonProperty("adult")] public bool Adult { get; set; }
 
@@ -109,7 +109,7 @@ public class EpisodeToAir
 
     [JsonProperty("production_code")] public string ProductionCode { get; set; } = null!;
 
-    [JsonProperty("runtime")] public long? Runtime { get; set; }
+    [JsonProperty("runtime")] public long Runtime { get; set; }
 
     [JsonProperty("season_number")] public long SeasonNumber { get; set; }
 
