@@ -10,18 +10,19 @@ public partial class DetailsComponent : ComponentBase
     [Inject] private NavigationManager NavManager { get; set; } = null!;
     [Parameter] public long Id { get; set; }
     [Parameter] public string Type { get; set; } = null!;
-    private IDetailsPage Details { get; set; } = null!;
+    private MovieDetails MovieDetails { get; set; } = null!;
+    private TvDetails TVDetails { get; set; } = null!;
 
 
     protected override async Task OnInitializedAsync()
     {
         if (Type.ToLower() == "movie")
         {
-            Details = (await MovieDbService.GetMovieDetails(Id) ?? null)!;
+            MovieDetails = (await MovieDbService.GetMovieDetails(Id) ?? null)!;
         }
         else if (Type.ToLower() == "tv")
         {
-            Details = (await MovieDbService.GetTvDetailsAsync(Id) ?? null)!;
+            TVDetails = (await MovieDbService.GetTvDetailsAsync(Id) ?? null)!;
         }
         else
         {
