@@ -2,11 +2,11 @@ using Newtonsoft.Json;
 
 namespace BlazorMovieDB.Models;
 
-public class TvDetails
+public class TvDetails : IDetailsPage
 {
     [JsonProperty("adult")] public bool Adult { get; set; }
 
-    [JsonProperty("backdrop_path")] public string BackdropPath { get; set; } = null!;
+    [JsonProperty("backdrop_path")] public string? BackdropPath { get; set; }
 
     [JsonProperty("created_by")] public CreatedBy[] CreatedBy { get; set; } = null!;
 
@@ -14,15 +14,15 @@ public class TvDetails
 
     [JsonProperty("first_air_date")] public DateTimeOffset FirstAirDate { get; set; }
 
-    [JsonProperty("genres")] public List<Genres> Genres { get; set; } = [];
+    [JsonProperty("genres")] public List<Genres>? Genres { get; set; } = [];
 
-    [JsonProperty("homepage")] public Uri Homepage { get; set; } = null!;
+    [JsonProperty("homepage")] public Uri? Homepage { get; set; }
 
     [JsonProperty("id")] public long Id { get; set; }
 
     [JsonProperty("in_production")] public bool InProduction { get; set; }
 
-    [JsonProperty("languages")] public string[] Languages { get; set; } = null!;
+    [JsonProperty("languages")] public string[]? Languages { get; set; }
 
     [JsonProperty("last_air_date")] public DateTimeOffset LastAirDate { get; set; }
 
@@ -40,27 +40,27 @@ public class TvDetails
 
     [JsonProperty("origin_country")] public string[] OriginCountry { get; set; } = null!;
 
-    [JsonProperty("original_language")] public string OriginalLanguage { get; set; } = null!;
+    [JsonProperty("original_language")] public string? OriginalLanguage { get; set; }
 
     [JsonProperty("original_name")] public string OriginalName { get; set; } = null!;
 
-    [JsonProperty("overview")] public string Overview { get; set; } = null!;
+    [JsonProperty("overview")] public string? Overview { get; set; }
 
     [JsonProperty("popularity")] public double Popularity { get; set; }
 
-    [JsonProperty("poster_path")] public string PosterPath { get; set; } = null!;
+    [JsonProperty("poster_path")] public string? PosterPath { get; set; }
 
     [JsonProperty("production_companies")] public Network[] ProductionCompanies { get; set; } = [];
 
-    [JsonProperty("production_countries")] public List<ProductionCountries> ProductionCountries { get; set; } = [];
+    [JsonProperty("production_countries")] public List<ProductionCountries>? ProductionCountries { get; set; } = [];
 
     [JsonProperty("seasons")] public Season[] Seasons { get; set; } = [];
 
     [JsonProperty("spoken_languages")] public List<SpokenLanguages> SpokenLanguages { get; set; } = [];
 
-    [JsonProperty("status")] public string Status { get; set; } = null!;
+    [JsonProperty("status")] public string? Status { get; set; }
 
-    [JsonProperty("tagline")] public string Tagline { get; set; } = null!;
+    [JsonProperty("tagline")] public string? Tagline { get; set; }
 
     [JsonProperty("type")] public string Type { get; set; } = null!;
 
@@ -138,7 +138,7 @@ public class ProductionCountries
 
 public class Season
 {
-    [JsonProperty("air_date")] public DateTimeOffset AirDate { get; set; }
+    [JsonProperty("air_date")] public DateTimeOffset? AirDate { get; set; }
 
     [JsonProperty("episode_count")] public long EpisodeCount { get; set; }
 
@@ -148,7 +148,7 @@ public class Season
 
     [JsonProperty("overview")] public string Overview { get; set; } = null!;
 
-    [JsonProperty("poster_path")] public string PosterPath { get; set; } = null!;
+    [JsonProperty("poster_path")] public string? PosterPath { get; set; }
 
     [JsonProperty("season_number")] public long SeasonNumber { get; set; }
 

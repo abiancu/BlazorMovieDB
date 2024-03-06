@@ -1,0 +1,11 @@
+@page "/{type}/details/{id:long}"
+
+<PageTitle>Details Page</PageTitle>
+
+<DetailsComponent Id="@Id" Type="@Type"/>
+
+@code
+{
+    [Parameter] public string Type { get; set; } = null!;
+    [Parameter] public long Id { get; set; }
+}

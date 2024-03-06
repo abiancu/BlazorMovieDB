@@ -1,0 +1,118 @@
+@using BlazorMovieDB.Models
+
+@if (@Type == "movie")
+{
+    <div class="hero-bg" style="@($"--bg-img: url(https://image.tmdb.org/t/p/original{MovieDetails?.BackdropPath})")">
+        <div class="hero-container">
+            <div class="container-xxl d-flex flex-column flex-md-row">
+                <!-- Hero section goes here -->
+                <div class="flex-grow-1 d-flex align-items-center justify-content-center justify-content-md-end">
+                    <div class="text-center text-md-end">
+                        @if (MovieDetails is not null)
+                        {
+                            <h1 class="text-light">@MovieDetails.Title</h1>
+                            <h5 class="text-light">@MovieDetails.Tagline</h5>
+                            @if (MovieDetails.Genres is not null)
+                            {
+                                @foreach (var genre in MovieDetails.Genres)
+                                {
+                                    <div class="d-inline-flex ms-1">
+                                        <span class="badge round-pill badge-light">@genre.Name</span>
+                                    </div>
+                                }
+                            }
+                            <ul class="nav nav-pills mt-3">
+                                <li class="nav-item d-inline-flex">
+                                    <a class="nav-link" href=@($"{MovieDetails.Homepage}")>
+                                        <i class="fa-solid fa-film me-2"></i><span>Home Page</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item d-inline-flex">
+                                    <a class="nav-link">
+                                        <i class="fa-solid fa-fire me-2"></i><span>@MovieDetails.Popularity</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+                <div class="order-last order-md-first d-flex justify-content-center">
+                    <div class="poster-container">
+                        @if (MovieDetails?.PosterPath is not null)
+                        {
+                            <img src="@($"https://image.tmdb.org/t/p/w500/{MovieDetails.PosterPath}")" alt="movie-poster"/>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="d-flex flex-column" style="margin-top: 12rem">
+            <p>
+                @if (MovieDetails is not null)
+                {
+                    @MovieDetails.Overview
+                }
+            </p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="hero-bg" style="@($"--bg-img: url(https://image.tmdb.org/t/p/original{TVDetails?.BackdropPath})")">
+        <div class="hero-container">
+            <div class="container-xxl d-flex flex-column flex-md-row">
+                <!-- Hero section goes here -->
+                <div class="flex-grow-1 d-flex align-items-center justify-content-center justify-content-md-end">
+                    <div class="text-center text-md-end">
+                        @if (TVDetails is not null)
+                        {
+                            <h1 class="text-light">@TVDetails.Name</h1>
+                            <h5 class="text-light">@TVDetails.Tagline</h5>
+                            @if (TVDetails.Genres is not null)
+                            {
+                                @foreach (var genre in TVDetails.Genres)
+                                {
+                                    <div class="d-inline-flex ms-1">
+                                        <span class="badge round-pill badge-light">@genre.Name</span>
+                                    </div>
+                                }
+                            }
+                            <ul class="nav nav-pills mt-3">
+                                <li class="nav-item d-inline-flex">
+                                    <a class="nav-link" href=@($"{TVDetails.Homepage}")>
+                                        <i class="fa-solid fa-film me-2"></i><span>Home Page</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item d-inline-flex">
+                                    <a class="nav-link">
+                                        <i class="fa-solid fa-fire me-2"></i><span>@TVDetails.Popularity</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+                <div class="order-last order-md-first d-flex justify-content-center">
+                    <div class="poster-container">
+                        @if (TVDetails?.PosterPath is not null)
+                        {
+                            <img src="@($"https://image.tmdb.org/t/p/w500/{TVDetails.PosterPath}")" alt="movie-poster"/>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="d-flex flex-column" style="margin-top: 12rem">
+            <p>
+                @if (TVDetails is not null)
+                {
+                    @TVDetails.Overview
+                }
+            </p>
+        </div>
+    </div>
+}
