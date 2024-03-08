@@ -1,5 +1,13 @@
 :root {
     --bg-img: var(--bg-img);
+    /* CSS HEX */
+    --oxford-blue: #0a1128ff;
+    --penn-blue: #001f54ff;
+    --indigo-dye: #034078ff;
+    --cerulean: #1282a2ff;
+    --white: #fefcfbff;
+    
+    
 }
 html, body {
     display: flex;
@@ -14,7 +22,7 @@ a, .btn-link {
 
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
+    background-color: var(--penn-blue);
     border-color: #1861ac;
 }
 

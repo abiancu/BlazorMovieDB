@@ -21,7 +21,7 @@ else
                             @foreach (var movie in _movies)
                             {
                                 <div class="col">
-                                    <div class="card h-100">
+                                    <div class="card h-20" style="overflow: hidden">
                                         <img src="@($"https://image.tmdb.org/t/p/original/{movie.PosterPath}")" class="card-img-top" alt="Movie Poster"/>
                                         <div class="card-body">
                                             <h5 class="card-title">@movie.Title</h5>
