@@ -6,6 +6,6 @@
 
 @code
 {
-    [Parameter] public string Type { get; set; } = null!;
-    [Parameter] public long Id { get; set; }
+    [Parameter] public string Type { get; set; } = string.Empty;
+    [Parameter] public long Id { get; set; } = default(long);
 }
