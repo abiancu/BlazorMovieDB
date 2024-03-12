@@ -6,7 +6,6 @@
 
 @if (_movies is null)
 {
-    <Loader/>
 }
 else
 {
@@ -25,6 +24,8 @@ else
                                         <img src="@($"https://image.tmdb.org/t/p/original/{movie.PosterPath}")" class="card-img-top" alt="Movie Poster"/>
                                         <div class="card-body">
                                             <h5 class="card-title">@movie.Title</h5>
+                                        </div>
+                                        <div class="card-footer text-end">
                                             <a href="/movie/details/@movie.Id" class="btn btn-primary" data-mdb-ripple-init>Details</a>
                                         </div>
                                     </div>
