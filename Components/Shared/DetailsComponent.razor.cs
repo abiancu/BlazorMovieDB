@@ -11,7 +11,7 @@ public partial class DetailsComponent : ComponentBase
     [Parameter] public long Id { get; set; }
     [Parameter] public string Type { get; set; } = null!;
     private MovieDetails MovieDetails { get; set; } = null!;
-    private TvDetails TVDetails { get; set; } = null!;
+    private TvDetails TvDetails { get; set; } = null!;
 
 
     protected override async Task OnInitializedAsync()
@@ -22,7 +22,7 @@ public partial class DetailsComponent : ComponentBase
         }
         else if (Type.ToLower() == "tv")
         {
-            TVDetails = (await MovieDbService.GetTvDetailsAsync(Id) ?? null)!;
+            TvDetails = (await MovieDbService.GetTvDetailsAsync(Id) ?? null)!;
         }
         else
         {

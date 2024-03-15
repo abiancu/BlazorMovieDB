@@ -1,7 +1,7 @@
 @if (Movie is not null)
 {
     <div class="col">
-        <div class="card h-20" style="overflow: hidden">
+        <div class="card h-20">
             @if (string.IsNullOrEmpty(Movie.PosterPath))
             {
                 <img class="card-img-top" alt="Movie Poster" src="/images/PosterPlaceHolder.png" />
