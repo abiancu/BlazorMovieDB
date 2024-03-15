@@ -1,21 +1,21 @@
-﻿@page "/"
+@page "/tvshows"
 @using BlazorMovieDB.Models
 @inject MovieDbService MovieDbService
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Tv Shows</PageTitle>
 
 <div class="container-xxl py-3">
     <div class="row">
         <div class="col">
-            <h1>Popular Movies</h1>
+            <h1>Popular Tv Shows</h1>
             <div class="d-flex flex-column flex-md-row justify-content-between my-3">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 g-3 justify-content-center justify-content-md-start">
-                    @if (_movies is not null)
+                    @if (_tvs is not null)
                     {
-                        @foreach (var movie in _movies)
+                        @foreach (var tv in _tvs)
                         {
                             <div class="col">
-                                <CardComponent Movie="movie"/>
+                                <CardComponent Tv="tv" Type="tv"/>
                             </div>
                         }
                     }
@@ -36,11 +36,10 @@
 
 @code {
 
-    private List<Movie>? _movies = [];
+    private List<Tv>? _tvs = [];
 
     protected override async Task OnInitializedAsync()
     {
-        _movies = await MovieDbService.GetMoviesAsync();
+        _tvs = await MovieDbService.GetTvAsync();
     }
 }
-

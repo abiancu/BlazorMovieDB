@@ -1,0 +1,89 @@
+@if (Type != "movie")
+{
+    @if (Tv is not null)
+    {
+        <div class="col">
+            <div class="card h-20">
+                @if (string.IsNullOrEmpty(Tv.PosterPath))
+                {
+                    <img class="card-img-top" alt="Movie Poster" src="/images/PosterPlaceHolder.png" />
+                }
+                else
+                {
+                    <img src="@($"https://image.tmdb.org/t/p/original/{Tv.PosterPath}")" class="card-img-top" alt="Tv Poster"/>    
+                }
+            
+                <div class="card-body border-top bg-light">
+                    <h5 class="card-title">@Tv.Name</h5>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="/tv/details/@Tv.Id" class="btn btn-primary" data-mdb-ripple-init>Details</a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card h-100" >
+            <img class="card-img-top" alt="Movie Poster" src="/images/PosterPlaceHolder.png"/>
+            <div class="card-body border-top bg-light">
+                <h5 class="card-title placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                    <span class="placeholder col-8"></span>
+                </p>
+            </div>
+            <div class="card-footer text-end">
+                <button class="btn btn-primary disabled placeholder col-6">
+                    Details
+                </button>
+            </div>
+        </div>
+    }
+}
+else
+{
+    @if (Movie is not null)
+    {
+        <div class="col">
+            <div class="card h-20">
+                @if (string.IsNullOrEmpty(Movie.PosterPath))
+                {
+                    <img class="card-img-top" alt="Movie Poster" src="/images/PosterPlaceHolder.png" />
+                }
+                else
+                {
+                    <img src="@($"https://image.tmdb.org/t/p/original/{Movie.PosterPath}")" class="card-img-top" alt="Movie Poster"/>    
+                }
+            
+                <div class="card-body border-top bg-light">
+                    <h5 class="card-title">@Movie?.Title</h5>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="/movie/details/@Movie?.Id" class="btn btn-primary" data-mdb-ripple-init>Details</a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card h-100" >
+            <img class="card-img-top" alt="Movie Poster" src="/images/PosterPlaceHolder.png"/>
+            <div class="card-body border-top bg-light">
+                <h5 class="card-title placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                    <span class="placeholder col-8"></span>
+                </p>
+            </div>
+            <div class="card-footer text-end">
+                <button class="btn btn-primary disabled placeholder col-6">
+                    Details
+                </button>
+            </div>
+        </div>
+    }
+
+}
