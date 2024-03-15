@@ -33,45 +33,14 @@
         </div>
     </div>
 </div>
-<hr class="hr hr-blurry"/>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1 class="d-flex align-item-center">Popular TV Shows</h1>
-            <div class="container">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-start g-4 p-3">
-                    @if (_tVs is not null)
-                    {
-                        @foreach (var tv in _tVs)
-                        {
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="@($"https://image.tmdb.org/t/p/original/{tv.PosterPath}")" class="card-img-top" alt="Movie Poster"/>
-                                    <div class="card-body">
-                                        <h5 class="card-title">@tv.Name</h5>
-                                        <a href="/tv/details/@tv.Id" class="btn btn-primary" data-mdb-ripple-init>Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 @code {
 
     private List<Movie>? _movies = [];
-    private List<Tv>? _tVs = [];
-
 
     protected override async Task OnInitializedAsync()
     {
         _movies = await MovieDbService.GetMoviesAsync();
-        _tVs = await MovieDbService.GetTvAsync();
     }
 }
 
