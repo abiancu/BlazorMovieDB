@@ -1,19 +1,39 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark text-light" style="background-color: var(--oxford-blue)">
+﻿<nav class="navbar navbar-expand-md navbar-expand-lg text-light" style="background-color: var(--oxford-blue)">
+    <!-- Container wrapper -->
     <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorMovieDB</a>
-        <div class="collapse navbar-collapse" role="navigation">
-            <ul class="navbar-nav">
+
+        <!-- Navbar brand -->
+        <a href="/">BlazorMovieDB</a>
+
+        <!-- Toggle button -->
+        <button data-mdb-collapse-init
+                class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNavItems" aria-controls="navbarNavItems" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarNavItems">
+            <ul class="navbar-nav ml-auto align-items-sm-end ">
+                <!-- Link -->
                 <li class="nav-item">
-                    <a class="nav-item" href="">TV Shows</a>
+                    <NavLink class="nav-link" href="/tvshows" Match="NavLinkMatch.All">
+                        <div>TV Shows</div>
+                    </NavLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-item" href="">Ratings</a>
+                    <NavLink class="nav-link" href="#">
+                        <div>Page 1</div>
+                    </NavLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-item" href="">Others</a>
+                    <NavLink class="nav-link" href="#">
+                        <div>Page 2</div>
+                    </NavLink>
                 </li>
             </ul>
+
         </div>
     </div>
+    <!-- Container wrapper -->
 </nav>
-
+<!-- Navbar -->
