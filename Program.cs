@@ -1,7 +1,20 @@
+using Azure.Identity;
 using BlazorMovieDB.Components;
 using BlazorMovieDB.Components.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// App configuration
+builder.Configuration.AddAzureAppConfiguration(options =>
+{
+    options.Connect(builder.Configuration["APPCONFIG_CONNSTRING"] ?? throw new ArgumentNullException());
+
+    options.ConfigureKeyVault(keyVaultOptions =>
+    {
+        keyVaultOptions.SetCredential(new DefaultAzureCredential());
+    });
+});
 
 // Add services to the container.
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
