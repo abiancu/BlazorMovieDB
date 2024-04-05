@@ -13,7 +13,7 @@ builder.Configuration.AddAzureAppConfiguration(options =>
     options.ConfigureKeyVault(keyVaultOptions =>
     {
         keyVaultOptions.SetCredential(new DefaultAzureCredential());
-    });
+    }).Select("*");
 });
 
 // Add services to the container.
