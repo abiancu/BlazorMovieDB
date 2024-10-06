@@ -1,5 +1,5 @@
 @page "/tvshows"
-@using BlazorMovieDB.Models
+@using BlazorMovieDB.Data
 @inject MovieDbService MovieDbService
 
 <PageTitle>Tv Shows</PageTitle>
@@ -36,7 +36,7 @@
 
 @code {
 
-    private List<Tv>? _tvs = [];
+    private List<TvDto>? _tvs = [];
 
     protected override async Task OnInitializedAsync()
     {

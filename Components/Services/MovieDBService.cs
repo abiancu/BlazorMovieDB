@@ -44,7 +44,7 @@ namespace BlazorMovieDB.Components.Services
         }
 
 
-        public async Task<List<Tv>?> GetTvAsync()
+        public async Task<List<TvDto>?> GetTvAsync()
         {
             try
             {
