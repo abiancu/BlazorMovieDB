@@ -1,4 +1,5 @@
 using System.Net.Http.Headers;
+using BlazorMovieDB.Data;
 using BlazorMovieDB.Models;
 using BlazorMovieDB.Utilities;
 using Newtonsoft.Json;
@@ -18,7 +19,7 @@ namespace BlazorMovieDB.Components.Services
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
 
-        public async Task<List<Movie>?> GetMoviesAsync()
+        public async Task<List<MoviesDto>?> GetMoviesAsync()
         {
             try
             {

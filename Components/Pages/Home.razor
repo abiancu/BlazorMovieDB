@@ -1,5 +1,5 @@
 ﻿@page "/"
-@using BlazorMovieDB.Models
+@using BlazorMovieDB.Data
 @inject MovieDbService MovieDbService
 
 <PageTitle>Home</PageTitle>
@@ -15,7 +15,7 @@
                         @foreach (var movie in _movies)
                         {
                             <div class="col">
-                                <CardComponent Movie="movie"/>
+                                <CardComponent Movie="(MoviesDto?)movie"/>
                             </div>
                         }
                     }
@@ -36,7 +36,7 @@
 
 @code {
 
-    private List<Movie>? _movies = [];
+    private List<MoviesDto>? _movies = [];
 
     protected override async Task OnInitializedAsync()
     {
